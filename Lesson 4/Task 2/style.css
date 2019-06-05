@@ -1,0 +1,32 @@
+.forma{
+	width: 30%;
+	border: 5px solid green;
+	border-radius: 5px;
+	text-align: center;
+}
+p {
+	text-align: center;
+}
+#message {
+	color: red;
+}
+input,
+select{
+	margin: 3% 0 0 0;
+	
+
+}
+input[type="submit"]{
+	margin: 3% 0 5% 0;
+	
+
+}
+input[type="submit"]:hover{
+	background-color: green;
+	color: #fff;
+}
+input[type="text"]:hover,
+input[type="text"]:active {
+	background-color: #000;
+	color: #fff;
+}

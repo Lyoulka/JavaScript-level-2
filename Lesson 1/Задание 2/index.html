@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 1 | task 2</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+   
+
+</head>
+<body>
+	<div id="menu"></div>
+ <script>
+    var itemClassName = 'menu1-items',
+    itemAnchorsClassName = 'menu1-items-anchors';   
+        //Функция-конструктор
+        function Container(id) {
+            if(id !== undefined){
+                this.id = id;
+            }
+            this.className = '';
+            this.htmlCode = '';
+        }
+
+        Container.prototype.render = function () {
+            return this.htmlCode;
+        };
+    
+
+        function Menu(menuId, menuClass, menuItems) {
+            Container.call(this);
+            this.id = menuId;
+            this.className = menuClass;
+            this.items = menuItems;
+        }
+
+        //Наследование в ES5
+        Menu.prototype = Object.create(Container.prototype);
+        Menu.prototype.constructor = Menu;
+
+        Menu.prototype.render = function () {
+            var result = '<ul class="' + this.className + '" id="' + this.id + '">';
+            for (var item = 0; item < this.items.length; item++)
+            {
+                if(this.items[item] instanceof MenuItem)
+                {
+                    result += this.items[item].render();
+                }
+            }
+            result +='</ul>';
+            return result;
+        };
+
+        //Класс MenuItem
+        function MenuItem(itemHref, itemTitle, itemSub) {
+            
+            this.href = itemHref;
+                    this.title = itemTitle;
+                    this.itemSub = itemSub;
+        }
+
+        //Наследование в ES5
+        MenuItem.prototype = Object.create(Container.prototype);
+        MenuItem.prototype.constructor = MenuItem;
+
+        MenuItem.prototype.render = function () {
+           var result = '<li><a href=' + this.href + '>' + this.title + '</a>'; 
+    if (this.itemSub) {
+        result += '<ul>'
+        for ( var i = 0; i < this.itemSub.length; i++ ) {
+            result += this.itemSub[i].render();
+        }
+        result += '</ul>';
+    }
+    result += '</li>';
+    return result;
+                
+        }
+function SubMenuItem(href, title) {
+    MenuItem.call(this, href, title);
+}
+SubMenuItem.prototype = Object.create(MenuItem.prototype);
+SubMenuItem.prototype.constructor = SubMenuItem;
+
+SubMenuItem.prototype.render = function() {
+    return '<li><a href=' + this.href + '>' + this.title + '</a></li>';
+}
+
+var menu = new Menu('list', 'list',
+    [
+    new MenuItem('#', 'Главная'),
+    new MenuItem('#', 'О нас', [
+        new SubMenuItem('#', 'Кто мы'),
+        new SubMenuItem('#', 'Чем мы занимаемся'),
+        new SubMenuItem('#', 'Как давно мы работаем')
+    ]),
+    new MenuItem('#', 'Связаться с нами',
+    [
+        new SubMenuItem('#', 'Через соц.сети'),
+        new SubMenuItem('#', 'По электронной почте'),
+        new MenuItem('#', 'Тип связи', [
+            new SubMenuItem('#', 'По телефону'),
+            new SubMenuItem('#', 'Через skype')
+        ])
+    ])
+]);
+
+        
+var storage = document.getElementById('menu');
+var result = menu.render();
+storage.innerHTML = result;
+console.log(result);
+
+
+
+            </script>
+</body>
+</html>

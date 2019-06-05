@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 4 | task 1</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script>
+        $( document ).ready( function () {
+        $( 'li.tab__item' ).on( 'click', function () {
+            $( 'li.tab__item' ).removeClass( 'list-active' );
+            $( this ).addClass( 'list-active' );
+
+            var idList = $( this ).attr( 'data-tab-id' );
+            $( 'div.paragraf' ).removeClass( 'active' );
+            $( '#' + idList).addClass( 'active' );
+        } );
+    } );
+</script>
+</head>
+<body>
+  <div class="container">
+    
+      <ul class="list clearfix">
+        <li data-tab-id="1" class="tab__item list-active">Первая вкладка</li>
+        <li data-tab-id="2" class="tab__item">Вторая вкладка</li>
+        <li data-tab-id="3" class="tab__item">Третья вкладка</li>
+        <li data-tab-id="4" class="tab__item">Четвертая вкладка</li>
+        
+    </ul>
+  <div  class="control">
+    <div id="1" class="paragraf active">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt ut minima saepe adipisci placeat assumenda officiis harum amet vero nostrum dicta atque deleniti maiores neque, sed, ab, inventore voluptatum, totam?</p>
+    </div>
+    
+    <div id="2" class="paragraf">
+
+      <p>Ab, ducimus sunt! Voluptatem amet dolore at molestias quae doloribus possimus eos! Necessitatibus doloremque doloribus, voluptatum mollitia eum inventore numquam consequatur modi possimus odit vel autem ea rem ullam fugit.</p>
+    </div>
+    
+    <div id="3" class="paragraf">
+
+      <p>Tempore veritatis culpa ut. Quos ducimus aperiam enim omnis impedit consequatur laborum! Iusto, saepe maxime sequi, nobis, blanditiis ex a quo architecto accusantium odit officiis laudantium provident esse quod quasi.</p>
+    </div>
+    <div id="4" class="paragraf">
+
+      <p>Nobis voluptate, at. Necessitatibus quia repellat quod nemo distinctio quidem unde, magni aperiam illum hic. Nulla, facilis sapiente veniam, ea nisi, alias expedita doloribus optio odio, quod modi deserunt et.</p>
+    </div>
+  </div>
+
+
+
+  </div>
+
+</body>
+</html>

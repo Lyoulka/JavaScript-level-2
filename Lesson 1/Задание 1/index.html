@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 1 | task 1</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+    var itemClassName = 'menu1-items',
+    itemAnchorsClassName = 'menu1-items-anchors';   
+        //Функция-конструктор
+        function Container(id) {
+            if(id !== undefined){
+                this.id = id;
+            }
+            this.className = '';
+            this.htmlCode = '';
+        }
+
+        Container.prototype.render = function () {
+            return this.htmlCode;
+        };
+        
+        Container.prototype.remove = function () {
+            document.getElementById(this.id).remove();
+        };
+    
+
+        function Menu(menuId, menuClass, menuItems) {
+            Container.call(this);
+            this.id = menuId;
+            this.className = menuClass;
+            this.items = menuItems;
+        }
+
+        //Наследование в ES5
+        Menu.prototype = Object.create(Container.prototype);
+        Menu.prototype.constructor = Menu;
+
+        Menu.prototype.render = function () {
+            var result = '<ul class="' + this.className + '" id="' + this.id + '">';
+            for (var item = 0; item < this.items.length; item++)
+            {
+                if(this.items[item] instanceof MenuItem)
+                {
+                    result += this.items[item].render();
+                }
+            }
+            result +='</ul>';
+            return result;
+        };
+
+        //Класс MenuItem
+        function MenuItem(itemId, itemHref, itemName) {
+            Container.call(this);
+            this.id = itemId;
+            this.className = itemClassName;
+   					this.href = itemHref;
+   					this.hrefClassName = itemAnchorsClassName;
+   					this.name = itemName;
+        }
+
+        //Наследование в ES5
+        MenuItem.prototype = Object.create(Container.prototype);
+        MenuItem.prototype.constructor = MenuItem;
+
+        MenuItem.prototype.render = function () {
+           var menuItemHtml = '<li id="' + this.id
+      			 + '" class="' + this.className
+      			 + '"><a href="' + this.href
+       			 + '" class="' + this.hrefClassName
+       			 + '">' + this.name + '</a></li>';
+    		return menuItemHtml;
+        };
+
+
+
+        var menu1 = new Menu('menu1-id', 'menu1', [
+            new MenuItem('/Main/','#', 'Главная' ),
+            new MenuItem('/about/','#','О нас'),
+            new MenuItem('/contacts/','#','Контакты')
+        ]);
+        
+
+
+        window.onload = function () {
+            document.getElementById('menu').innerHTML = menu1.render();
+        }
+       /*  window.onload = function () {
+           document.getElementById('menu').innerHTML = menu1.remove();
+        }*/
+    </script>
+
+</head>
+<body>
+	<div>
+        <div id="menu"></div>
+    </div>
+
+</body>
+</html>

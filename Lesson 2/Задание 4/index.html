@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 2 | task 4</title>
+	<script>
+	window.onload = function () {
+    document.getElementById('btn_1').onclick = function () {
+        var xhr1 = new XMLHttpRequest();
+        xhr1.open('GET', './answer.json', true);
+        xhr1.send();
+
+        xhr1.onreadystatechange = function () {
+            console.log(xhr1.readyState);
+          
+            if(xhr1.readyState !== 4) return;
+
+            if(xhr1.status !== 200)
+            {
+                console.log('Error', xhr1.status, xhr1.statusText);
+            } else {
+                var json = xhr1.responseText;
+                console.log(json);
+                var result = JSON.parse(json);
+                console.log(result);
+                document.getElementById('Answer').innerText = result.success;
+            }
+           } 
+        }
+        document.getElementById('btn_2').onclick = function () {
+        var xhr2 = new XMLHttpRequest();
+        xhr2.open('GET', './answer.json', true);
+        xhr2.send();
+
+        xhr2.onreadystatechange = function () {
+            console.log(xhr2.readyState);
+          
+            if(xhr2.readyState !== 4) return;
+
+            if(xhr2.status !== 200)
+            {
+                console.log('Error', xhr2.status, xhr2.statusText);
+            } else {
+                var json = xhr2.responseText;
+                console.log(json);
+                var result = JSON.parse(json);
+                console.log(result);
+                document.getElementById('Answer').innerText = result.error;
+            }
+           } 
+        }
+      }
+	</script>
+</head>
+<body>
+	<button id="btn_1">Нажми меня</button>
+	<button id="btn_2">Не нажимай меня</button>
+	<div id="Answer"></div>
+</body>
+</html>

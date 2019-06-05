@@ -1,0 +1,35 @@
+body {
+	width: 70%;
+	margin: 0 auto;
+	font-family: Lato, Calibri, Arial, sans-serif;
+	text-align: center;
+}
+.menu1 {
+	padding: 0px;
+}
+.list {
+	padding: 10px;
+	display: inline-block;
+	background-color: #005555;
+}
+.list li {
+	list-style-type: none;
+	border: solid 1px black;
+	transition: 0.3s;
+}
+.list li > ul {
+	background-color: #007DC7;
+	list-style-type: none;
+	padding: 5px;
+}
+
+li:hover {
+	background-color: black;
+}
+.list:nth-last-child(1) {
+	border-right: solid 1px black;
+}
+li a {
+	color: white;
+	text-decoration: none;
+}

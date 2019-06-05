@@ -1,0 +1,25 @@
+{
+  "name": "bower",
+  "description": "bower_components",
+  "main": "index",
+  "keywords": [
+    "jquery",
+    "awesom",
+    "yay"
+  ],
+  "authors": [
+    "Lyoulka"
+  ],
+  "license": "MIT",
+  "homepage": "non",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

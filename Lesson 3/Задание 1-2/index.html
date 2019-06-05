@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 3 | task 1-2</title>
+	
+</head>
+<body>
+	<script>
+		var str = 'Mae West had one golden rule for handling men:  ‘Tell the pretty ones they’re smart, and tell the smart ones they’re pretty.’';
+		var i = 0;
+		var funcExp = function(str, offset, s){
+			console.log ('Найдено:', str, 'На позиции', offset, 'В строке', s);
+			i++;
+			return '”';
+		}
+			var funcExp1 = function(str, offset, s){
+			console.log ('Найдено:', str, 'На позиции', offset, 'В строке', s);
+			i++;
+			return '“';
+		}
+		// console.log(str.replace(/(?!s’|[a-z]’[a-z])([\s\S])’|^’/g, funcExp));
+		var strMid  = str.replace(/(?!s’|[a-z]’[a-z])([\s\S])’|^’/g, funcExp);
+		console.log(strMid.replace(/‘/g, funcExp1));
+	</script>
+</body>
+</html>
